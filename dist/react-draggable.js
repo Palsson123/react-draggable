@@ -1884,7 +1884,7 @@
 	    var _this = possibleConstructorReturn(this, (Draggable.__proto__ || Object.getPrototypeOf(Draggable)).call(this, props));
 
 	    _this.onDragStart = function (e, coreData) {
-
+	      e.stopPropagation();
 	      // Short-circuit if user's callback killed it.
 	      var shouldStart = _this.props.onStart(e, createDraggableData(_this, coreData));
 	      // Kills start event on core as well, so move handlers are never bound.
@@ -1895,7 +1895,7 @@
 
 	    _this.onDrag = function (e, coreData) {
 	      if (!_this.state.dragging) return false;
-
+	      e.stopPropagation();
 	      var uiData = createDraggableData(_this, coreData);
 
 	      var newState /*: $Shape<DraggableState>*/ = {
@@ -1946,7 +1946,7 @@
 
 	    _this.onDragStop = function (e, coreData) {
 	      if (!_this.state.dragging) return false;
-
+	      e.stopPropagation();
 	      // Short-circuit if user's callback killed it.
 	      var shouldStop = _this.props.onStop(e, createDraggableData(_this, coreData));
 	      if (shouldStop === false) return false;
